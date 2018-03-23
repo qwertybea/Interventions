@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -15,16 +15,15 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     AccueilComponent,
-    ProblemeComponent,
-    ReactiveFormsModule
+    ProblemeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
