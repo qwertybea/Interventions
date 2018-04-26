@@ -24,7 +24,7 @@ describe('ProblemeComponent', () => {
   // it('should create', () => {
   //   expect(component).toBeTruthy();
   // });
-
+  // Les tests pour verifier les conditions
   it('Zone PRÉNOM invalide avec 2 caractères', () => {
     let errors = {};
     let zonePrenom = component.problemeForm.controls['prenomProbleme'];

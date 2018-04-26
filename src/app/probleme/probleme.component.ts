@@ -11,12 +11,15 @@ export class ProblemeComponent implements OnInit {
   problemeForm: FormGroup;
   constructor(private fb: FormBuilder) { }
 
+  // les conditions
   ngOnInit() {
     this.problemeForm = this.fb.group({
       prenomProbleme: ['', [
         Validators.required,
-        Validators.minLength(3)
-      ]]
+        Validators.minLength(3),
+        Validators
+      ]],
+
     });
   }
 
