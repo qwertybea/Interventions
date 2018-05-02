@@ -82,4 +82,33 @@ describe('ProblemeComponent', () => {
     errors = zonePrenom.errors || {};
     expect(errors['longueurMinimum']).toBeFalsy();
   });
+
+  // COURRIEL
+
+  it('Zone ADRESSE COURRIEL est désactivée quand ne pas me notifier', () => {
+    component.appliquerNotifications('COMPTOIR');
+    let zone = component.problemeForm.get('courrielGroup.courriel');
+    expect(zone.status).toEqual('DISABLED');
+  });
+
+  it('Zone CONFIRMER COURRIEL est désactivée quand ne pas me notifier', () => {
+    component.appliquerNotifications('COMPTOIR');
+    let zone = component.problemeForm.get('courrielGroup.courrielConfirmation');
+    expect(zone.status).toEqual('DISABLED');
+  });
+
+  // TELEPHONE
+
+  it('Zone TELEPHONE est désactivée quand ne pas me notifier', () => {
+    component.appliquerNotifications('COMPTOIR');
+    let zone = component.problemeForm.get('telephone');
+    expect(zone.status).toEqual('DISABLED');
+  });
+
+  it('Zone TELEPHONE est vide quand ne pas me notifier', () => {
+    component.appliquerNotifications('COMPTOIR');
+    let zone = component.problemeForm.get('telephone');
+    expect(zone.value).toBeNull();
+  });
+
 });
