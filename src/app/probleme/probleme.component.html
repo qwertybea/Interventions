@@ -12,27 +12,77 @@
               <input class="form-control" 
               id="prenomProblemeId" 
               type="text" 
-              placeholder="Votre prénom ini (obligatoir)" 
+              placeholder="Votre prénom ici (obligatoire)" 
               formControlName="prenomProbleme" 
               [ngClass]="{'is-invalid': (problemeForm.get('prenomProbleme').touched ||
                problemeForm.get('prenomProbleme').dirty) && 
-               !problemeForm.get('prenomProbleme').valid,
+               !problemeForm.get('prenomProbleme').errors.longueurMinimum,
                'is-valid': (problemeForm.get('prenomProbleme').touched ||
                problemeForm.get('prenomProbleme').dirty) && 
-               problemeForm.get('prenomProbleme').valid }"
+               problemeForm.get('prenomProbleme').errors.longueurMinimum }"
               />
                 <span *ngIf="(problemeForm.get('prenomProbleme').touched || problemeForm.get('prenomProbleme').dirty) && problemeForm.get('prenomProbleme').errors">
-                  <span *ngIf="problemeForm.get('prenomProbleme').errors.required && problemeForm.get('prenomProbleme').touched">
+                  <span *ngIf="problemeForm.get('prenomProbleme').errors.required">
                     <small class="text-muted">
                       Merci de saisir votre prénom.
                     </small>
                   </span>
-                  <span *ngIf="problemeForm.get('prenomProbleme').errors.minlength">
+                  <span *ngIf="!problemeForm.get('prenomProbleme').errors.required && !problemeForm.get('prenomProbleme').errors.longueurMinimum">
                       <small class="text-muted">
                         Veuillez entrer plus de caractères
                       </small>
                   </span>
                 </span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="nomProblemeId" class="col-md-2 col-form-label text-right">Nom :</label>
+            <div class="col-md-10">
+              <input class="form-control" 
+              id="nomProblemeId" 
+              type="text" 
+              placeholder="Votre Nom ici (obligatoire)" 
+              formControlName="nomProbleme" 
+              [ngClass]="{'is-invalid': (problemeForm.get('nomProbleme').touched ||
+               problemeForm.get('nomProbleme').dirty) && 
+               !problemeForm.get('nomProbleme').errors.longueurMinimum,
+               'is-valid': (problemeForm.get('nomProbleme').touched ||
+               problemeForm.get('nomProbleme').dirty) && 
+               problemeForm.get('nomProbleme').errors.longueurMinimum }"
+              />
+                <span *ngIf="(problemeForm.get('nomProbleme').touched || problemeForm.get('nomProbleme').dirty) && problemeForm.get('nomProbleme').errors">
+                  <span *ngIf="problemeForm.get('nomProbleme').errors.required">
+                    <small class="text-muted">
+                      Merci de saisir votre nom.
+                    </small>
+                  </span>
+                  <span *ngIf="!problemeForm.get('nomProbleme').errors.required && !problemeForm.get('nomProbleme').errors.longueurMinimum">
+                      <small class="text-muted">
+                        Veuillez entrer plus de caractères
+                      </small>
+                  </span>
+                </span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="typeProblemeId" class="col-md-2 col-form-label text-right">Type de problème :</label>
+            <div class="col-md-10">
+              <select class="form-control"
+                id="typeProblemeId"
+                formControlName="typeProbleme">
+                  <option value="">Sélectionner un type de problème (obligatoire) ...</option>
+                  <option *ngFor="let typ of typesProbleme" [value]="typ.id">{{typ.descriptionTypeProbleme}}</option>
+                  <!--
+                  <option value="1">Problème avec la souris</option>
+                  <option value="2">Problème de clavier</option>
+                  <option value="3">Problème d'accès Internet</option>
+                  <option value="4">Problème avec un logiciel</option>
+                  <option value="5">Problème d'imprimante</option>
+                  <option value="6">Carte graphique</option>
+                  <option value="7">Carte mère</option>
+                  <option value="8">Autre</option>
+                  -->
+              </select>
             </div>
           </div>
         </form>

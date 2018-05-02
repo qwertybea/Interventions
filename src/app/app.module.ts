@@ -9,6 +9,10 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { ProblemeComponent } from './probleme/probleme.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { TypeData } from './probleme/probleme-data';
+import { TypeService } from './probleme/type.service';
 
 
 @NgModule({
@@ -21,9 +25,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule .forRoot(TypeData, { delay: 1000})
   ],
-  providers: [],
+  providers: [TypeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
