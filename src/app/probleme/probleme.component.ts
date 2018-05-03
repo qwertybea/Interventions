@@ -62,16 +62,16 @@ export class ProblemeComponent implements OnInit {
     telephoneControl.disable();
 
     // Conditional
-    if(typeNotification === 'EXPEDITION') {
+    if (typeNotification === 'COURRIEL') {
       courrielControl.enable();
       courrielConfirmationControl.enable();
       
       courrielControl.setValidators([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]);
       courrielConfirmationControl.setValidators([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]);
       courrielGroupControl.setValidators([Validators.compose([emailMatcherValidator.courrielConfirmation()])])
-    } else {
+    } else if (typeNotification === 'TELEPHONE') {
       telephoneControl.enable();
-      telephoneControl.setValidators([Validators.required]);
+      telephoneControl.setValidators([Validators.required, Validators.pattern('[0-9]+'), Validators.minLength(10), Validators.maxLength(10)]);
     }
 
     courrielControl.updateValueAndValidity();
