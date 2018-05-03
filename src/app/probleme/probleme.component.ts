@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { VerifierCaracteresValidator } from '../shared/caracteres-validator';
 import { TypeService } from './type.service';
 import { IType } from './type';
+import { emailMatcherValidator } from '../shared/emailMatcher-validator';
 
 @Component({
   selector: 'inter-probleme',
@@ -44,6 +45,7 @@ export class ProblemeComponent implements OnInit {
   appliquerNotifications(typeNotification: string): void {
     const courrielControl = this.problemeForm.get('courrielGroup.courriel');
     const courrielConfirmationControl = this.problemeForm.get('courrielGroup.courrielConfirmation');
+    const courrielGroupControl = this.problemeForm.get('courrielGroup');
     const telephoneControl = this.problemeForm.get('telephone');
 
     // Set up
@@ -63,15 +65,18 @@ export class ProblemeComponent implements OnInit {
     if(typeNotification === 'EXPEDITION') {
       courrielControl.enable();
       courrielConfirmationControl.enable();
+      
+      courrielControl.setValidators([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]);
+      courrielConfirmationControl.setValidators([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]);
+      courrielGroupControl.setValidators([Validators.compose([emailMatcherValidator.courrielConfirmation()])])
+    } else {
       telephoneControl.enable();
-
-      courrielControl.setValidators([Validators.required]);
-      courrielConfirmationControl.setValidators([Validators.required]);
       telephoneControl.setValidators([Validators.required]);
     }
 
     courrielControl.updateValueAndValidity();
     courrielConfirmationControl.updateValueAndValidity();
+    courrielGroupControl.updateValueAndValidity();
     telephoneControl.updateValueAndValidity();
 
   }
