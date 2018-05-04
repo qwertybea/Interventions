@@ -29,6 +29,7 @@ export class ProblemeComponent implements OnInit {
         Validators.required,
         VerifierCaracteresValidator.longueurMinimum(3)
       ]],
+      notifier:[''],
       typeProbleme: ['', [Validators.required]],
       courrielGroup: this.fb.group({
         courriel: [{value: '', disabled: true}],
@@ -40,6 +41,9 @@ export class ProblemeComponent implements OnInit {
     this.types.obtenirTypes()
     .subscribe(typ => this.typesProbleme = typ,
                error => this.errorMessage = <any>error);
+
+    this.problemeForm.get('notifier').valueChanges
+    .subscribe(value => this.appliquerNotifications(value));
   } // ngOnInit
 
   appliquerNotifications(typeNotification: string): void {
